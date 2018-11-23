@@ -1,0 +1,30 @@
+/*C-B*/
+
+.ssd-module-wrap {width: 750px; margin: 0 auto; position: relative; text-align: left; background-color: #ffffff; }
+.ssd-module-wrap .ssd-module,.ssd-module-wrap .ssd-module-heading{ width: 750px; position:relative; overflow: hidden;  }
+.ssd-module{background-repeat:no-repeat; background-position:left top; background-size:100% 100%;}
+.ssd-module .ssd-widget-pic,.ssd-module .ssd-widget-text,.ssd-module .ssd-widget-line,.ssd-module-wrap .ssd-widget-rectangle,.ssd-module-wrap .ssd-widget-circle,.ssd-module-wrap .ssd-widget-triangle,.ssd-module-wrap .ssd-widget-table{ position: absolute; overflow: hidden; }
+.ssd-module-wrap .ssd-widget-table table{width: 100%;}
+.ssd-module-wrap .ssd-widget-table th,.ssd-module-wrap .ssd-widget-table td{position:relative;}
+.ssd-module .ssd-widget-pic img{display: block; width:100%; height:100% }
+.ssd-module .ssd-widget-text{ position: absolute; overflow: hidden;}
+.ssd-module .ssd-widget-text span{display:block;overflow:hidden; width:100%;  height:100%; padding:0; margin: 0; word-break:break-all; word-wrap:break-word; white-space:normal;}
+.ssd-module .ssd-widget-link{ position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: transparent;z-index:100 }
+.ssd-module-wrap .ssd-widget-text{ line-height: 1.5; word-break: break-all;}
+.ssd-module-wrap .ssd-cell-text{position:absolute;top:0;left:0;right:0;width: 100%;height: 100%;overflow: auto;}
+.ssd-module-heading{background-repeat:no-repeat; background-position:left center; background-size:100% 100%; }
+.ssd-module-heading .ssd-module-heading-layout{display:inline-block;}
+.ssd-module-heading .ssd-widget-heading-ch{float: left;display: inline-block;margin-left: 15px; margin-right:6px; height: 100%;}
+.ssd-module-heading .ssd-widget-heading-en{float: left;display: inline-block;margin-left: 6px; margin-right:15px; height: 100%;}
+.ssd-module-wrap .ssd-widget-rectangle{box-sizing: border-box;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;}
+
+/*C-E*/.ssd-module-wrap .M15294674768071{height:900px; width:750px; background-color:#d7d7d7; background-image:url(//img30.360buyimg.com/sku/jfs/t20275/142/1459826307/138194/1d0c14b0/5b29d249N46f7a577.jpg)}
+.ssd-module-wrap .M15294674768252{height:699px; width:750px; background-color:#f2f2f2; background-image:url(//img30.360buyimg.com/sku/jfs/t23107/346/237231860/48838/e3e28acc/5b29d249N182badd0.jpg)}
+.ssd-module-wrap .M15294674768463{height:858px; width:750px; background-color:#b3b3b3; background-image:url(//img30.360buyimg.com/sku/jfs/t24520/24/240908077/118948/f144f7ba/5b29d249N132fe980.jpg)}
+.ssd-module-wrap .M15294674842264{height:882px; width:750px; background-color:#e9e9e9; background-image:url(//img30.360buyimg.com/sku/jfs/t23026/36/239560902/143475/cf622cb9/5b29d249N024f9033.jpg)}
+.ssd-module-wrap .M15294674924695{height:652px; width:750px; background-color:#cbcbcb; background-image:url(//img30.360buyimg.com/sku/jfs/t23035/37/246901736/88419/af806cc3/5b29d249N22e52fe6.jpg)}
+.ssd-module-wrap .M15294674925036{height:578px; width:750px; background-color:#f2f2f2; background-image:url(//img30.360buyimg.com/sku/jfs/t21928/63/1451807084/89798/b1af0ea5/5b29d249Nef56f589.jpg)}
+.ssd-module-wrap .M15294674999817{height:634px; width:750px; background-color:#cbcbcb; background-image:url(//img30.360buyimg.com/sku/jfs/t21568/191/1449886166/86478/384556e4/5b29d249N5fcbdf81.jpg)}
+.ssd-module-wrap .M15294675000068{height:686px; width:750px; background-color:#f2f2f2; background-image:url(//img30.360buyimg.com/sku/jfs/t19813/115/1919028745/42893/ba615d4c/5b29d249N317937c7.jpg)}
+.ssd-module-wrap .M15294675111659{height:779px; width:750px; background-color:#cbcbcb; background-image:url(//img30.360buyimg.com/sku/jfs/t22231/356/1435577749/132275/eb6ebd5e/5b29d24aN2b5159d5.jpg)}
+.ssd-module-wrap .M15294890482391{height:1000px; background-size:100% 100%; width:750px; background-color:#e9e9e9; background-image:url(//img30.360buyimg.com/sku/jfs/t21655/288/1466041088/129558/fb9ec72e/5b2a26d9Nb0ac31d2.jpg)}
