@@ -13,8 +13,8 @@ module.exports = {
     proxyTable: {},
 
     // Various Dev Server settings
-    host: '192.168.2.141', // can be overwritten by process.env.HOST 这个地方配你本机的IP
-    // host: 'localhost',
+    // host: '192.168.2.141', // can be overwritten by process.env.HOST 这个地方配你本机的IP
+    host: 'localhost',
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,

@@ -23,17 +23,17 @@
       </div>
 
       <div v-if="isCompany" class="name-input-text">
-        <input v-model="comanyName" placeholder="请填写单位名称" type="text" name="company" />
+        <span>*</span><input v-model="comanyName" placeholder="请填写单位名称" type="text" name="company" />
       </div>
       <div v-if="isCompany" class="name-input-text">
-        <input v-model="taxpayerTags" placeholder="请填写纳税人识别号" type="text" name="company" />
+        <span>*</span><input v-model="taxpayerTags" placeholder="请填写纳税人识别号" type="text" name="company" />
       </div>
 
       <div class="phone-input-text">
-        <span>*收票人手机</span>&nbsp;&nbsp;<input v-model="phone" placeholder="请填写手机号码" type="text" name="company" />
+        <span>*&nbsp;收票人手机</span><input v-model="phone" placeholder="请填写手机号码" type="text" name="company" />
       </div>
       <div style="padding-bottom:10px;" class="phone-input-text">
-        <span>*收票人邮箱</span>&nbsp;&nbsp;<input v-model="email" placeholder="用来接收电子发票邮件，可选填" type="text" name="company" />
+        <span class="email-label">收票人邮箱</span><input v-model="email" placeholder="用于接收电子发票，可选填" type="text" name="company" />
       </div>
 
       <div class="second-title">发票内容</div>
@@ -54,6 +54,7 @@
 
 <script>
 
+import { JumpPage } from '@/assets/js/utils'
 import { Toast } from 'mint-ui';
 export default {
   name: 'App',
@@ -61,7 +62,7 @@ export default {
     return {
       isInvoice: true,
       isCompany: true,
-      goodsDetails: false,
+      goodsDetails: true,
 
       comanyName: '',
       taxpayerTags: '',
@@ -92,7 +93,7 @@ export default {
 
       var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
       if(this.email.trim() != "" && !reg.test(this.email.trim())) {
-        Toast('可以不填邮箱，如果填请用正确邮箱格式！');
+        Toast('可以不填写邮箱，如果填写请使用正确邮箱格式！');
         return ;
       }
 
@@ -188,7 +189,7 @@ export default {
             border-radius: 5px;
             width: 95%;
             outline: none;
-            padding-left: 15px;
+            text-indent: 15px;
           }
 
           input::-webkit-input-placeholder {
@@ -197,6 +198,12 @@ export default {
             /* placeholder字体大小  */
             /* placeholder位置  */
             text-align: left;
+          }
+
+          span {
+            display: inline-block;
+            width: 5%;
+            font-size: 14px;
           }
         }
 
@@ -212,9 +219,9 @@ export default {
             background-color: #f6f6f6;
             border: 0;
             border-radius: 5px;
-            width: 63%;
+            width: 69%;
             outline: none;
-            padding-left: 15px;
+            text-indent: 15px;
           }
 
           input::-webkit-input-placeholder {
@@ -226,7 +233,12 @@ export default {
           }
 
           span {
+            display: inline-block;
+            width: 31%;
             font-size: 14px;
+          }
+          .email-label{
+            text-indent: 11px;
           }
         }
 

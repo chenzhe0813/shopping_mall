@@ -96,6 +96,10 @@
         <orderPrompt v-if="orderPromptData.status" 
             :data="orderPromptData"
             @ok_fn="confirmPrompt" />
+        <!-- 物流弹框 -->
+        <flowPrompt v-if="flowPromptData.status" 
+            :data="flowPromptData"
+            @ok_fn="confirmPrompt" />
   </section>
 </template>
 
@@ -103,6 +107,7 @@
     // 引入组件
     import contactTel from '@/components/contactTel'
     import orderPrompt from '@/components/orderPrompt'
+    import flowPrompt from '@/components/flowPrompt'
 
     // 引入方法
     import { getParamsToken, saveCacheToken, getSaveCacheToken, payFunction, getUrlParams, copyString, JumpPageBack } from '@/assets/js/utils'
@@ -201,12 +206,37 @@
                     cancelText : '否',
                     okText : '是',
                     type : 'cancelOrder'
-                }
+                },
+                flowPromptData: {
+                    status : false,
+                    title : '物流信息',
+                    html : [],
+                    cancelText : '关闭',
+                    okText : '确定'
+                },
+                orderTrack:[
+                   { 
+                         "msgTime":"2013-09-25 09:03:53", 
+                         "content":"您提交了订单，请等待系统确认",  
+                         "operator":"客户" 
+                  }, 
+                   { 
+                         "msgTime":"2013-09-25 09:04:22",  
+                         "content":"您的订单已经进入北京 1 号库准备出库，不能修改",  
+                         "operator":"系统"  
+                  }, 
+                   { 
+                         "msgTime":"2013-09-25 09:03:53",  
+                         "content":"您的货物已到达北辰自提点，请上门自提",  
+                         "operator":"小娟" 
+                  } 
+                ]
             };
         },
         components : {
             contactTel,
-            orderPrompt
+            orderPrompt,
+            flowPrompt,
         },
         methods : {
             getGoodsListImage(item, _item) {
@@ -374,6 +404,41 @@
             },
             queryOrderTrack(){
                 let that = this;
+                //mock
+                // let data ={
+                //             "code":1000,
+                //             "data": { 
+                //                  "jdOrderId":111111,
+                //                  "orderTrack":[
+                //                            { 
+                //                                  "msgTime":"2013-09-25 09:03:53", 
+                //                                  "content":"您提交了订单，请等待系统确认",  
+                //                                  "operator":"客户" 
+                //                           }, 
+                //                            { 
+                //                                  "msgTime":"2013-09-25 09:04:22",  
+                //                                  "content":"您的订单已经进入北京 1 号库准备出库，不能修改",  
+                //                                  "operator":"系统"  
+                //                           }, 
+                //                            { 
+                //                                  "msgTime":"2013-09-25 09:03:53",  
+                //                                  "content":"您的货物已到达北辰自提点，请上门自提",  
+                //                                  "operator":"小娟" 
+                //                           }
+                //                       ] 
+                //                  } 
+                //             }
+                //         if (data.code * 1 === 1000) {
+                //             that.flowPromptData = {
+                //                 status : true,
+                //                 title : '物流信息',
+                //                 html : data.data.orderTrack,
+                //                 cancelText : '关闭',
+                //                 okText : '确定'
+                //             }
+                //         } else {
+                //             alert(res.data.msg);
+                //         }
                 request.actionUnasync({
                     url: 'jd/orderTrack?order_id='+getUrlParams().order_id+'&token='+getUrlParams().token,
                     method: 'get',
@@ -381,20 +446,10 @@
                     },
                 }).then( result => {
                     if (result.status * 1 === 200 && result.data && result.data.code * 1 === 1000) {
-                        console.log(result.data.data);
-                        let infoData = result.data.data.orderTrack;
-                        let info="";
-                        for(let i=0;i<infoData.length;i++){
-                            if(info == ""){
-                                info = infoData[i].content;
-                            }else{
-                                info = info+'-'+infoData[i].content;
-                            }
-                        }
-                        that.orderPromptData = {
+                        that.flowPromptData = {
                             status : true,
                             title : '物流信息',
-                            text : info,
+                            html : result.data.data.orderTrack,
                             cancelText : '关闭',
                             okText : '确定'
                         }
