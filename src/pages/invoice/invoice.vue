@@ -1,7 +1,10 @@
 <template>
   <div class="app-box">
     <div class="main-box">
-      <div class="first-title">发票类型</div>
+      <div class="first-title">
+        发票类型
+        <mt-button size="small" class="cancelBtn" v-on:click="cancelInvoice">取消发票</mt-button>
+      </div>
       <div class="first-text">
         <i v-if="!isInvoice" class="iconfont icon-yuanquan1 icon-unselected"></i>
         <i v-if="isInvoice" class="iconfont icon-yuanquangou icon-selected"></i>
@@ -55,7 +58,8 @@
 <script>
 
 import { JumpPage } from '@/assets/js/utils'
-import { Toast } from 'mint-ui';
+import request from '@/assets/js/request';
+import { Indicator, Toast } from 'mint-ui';
 export default {
   name: 'App',
   data() {
@@ -70,9 +74,24 @@ export default {
       email: ''
     };
   },
+  created() {
+    self = this;
+    if(JSON.parse(localStorage.getItem("_invoice_")) && JSON.parse(localStorage.getItem("_invoice_")).data){
+      let invoice = JSON.parse(localStorage.getItem("_invoice_")).data;  
+      self.isCompany = invoice.order_invoice_title === 'company';
+      self.comanyName = invoice.company_name || '';
+      self.taxpayerTags = invoice.company_tax_no || '';
+      self.phone = invoice.invoice_recver_mobile || '';
+      self.email = invoice.invoice_recver_email || '';
+    }
+  },
   methods: {
     changeSelected: function(isCompany) {
       this.isCompany = isCompany;
+    },
+    cancelInvoice: function(){
+      localStorage.setItem('_invoice_', JSON.stringify({}));
+      this.jumpBack();
     },
     saveInfo: function() {
       if(this.isCompany) {
@@ -96,7 +115,45 @@ export default {
         Toast('可以不填写邮箱，如果填写请使用正确邮箱格式！');
         return ;
       }
+      var self = this;
+      var invoiceData = {};
+      if(this.isCompany){
+        invoiceData = {
+          data: {
+          order_invoice_title: 'company',
+            invoice_recver_mobile: self.phone,
+            invoice_recver_email: self.email,
+            order_invoice_detail: '商品明细',
+            company_name: self.comanyName,
+            company_tax_no: self.taxpayerTags
+          }
+        }
+      }else{
+        invoiceData = {
+          data: {
+            order_invoice_title: 'personal',
+            invoice_recver_mobile: self.phone,
+            invoice_recver_email: self.email,
+            order_invoice_detail: '商品明细',
+          }
+        }
+      }
 
+      localStorage.setItem('_invoice_', JSON.stringify(invoiceData));
+      this.jumpBack();
+    },
+    jumpBack: function(){
+      // window.location.href = "http://localhost:8080/submitOrder.html?token=25e629247c683ae1dff49192323333";
+      // return ;
+      var result = {
+        token : getSaveCacheToken(),
+      }
+ 
+      JumpPage({
+          href : `${request.getUrlbefore()}/submitOrder.html`,
+          cache : true,
+          params : result
+      })
     }
   }
 }
@@ -113,6 +170,16 @@ export default {
       left: 0;
       right: 0;
       bottom: 0;
+
+      .cancelBtn{
+        float: right;
+        font-size: 13px;
+        margin-top: 7px;
+        margin-right: 20px;
+        height: 26px;
+        background-color: #e03c45;
+        color: #FFF;
+      }
 
       .main-box {
         position: absolute;

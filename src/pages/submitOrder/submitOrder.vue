@@ -66,10 +66,10 @@
         </div>
       </div>
 
-      <div class="g-address-box">
+      <div class="g-address-box" v-on:click="JumpPageInvoice()">
         <div class="g-left-text">发票信息</div>
         <div style="padding-right:0;" class="g-right-text">
-          <span>不开</span>
+          <span>{{isInvoice ? '已填写' : '不开'}}</span>
           <i class="iconfont icon-iconfontjiantou5"></i>
         </div>
       </div>
@@ -142,14 +142,22 @@ export default {
         user_addr_detail: '',
         address_id: ""
       }},
-      goodsList: []
+      goodsList: [],
+      isInvoice: false,
+      invoice: {},
     };
   },
   created() {
     this.getToken();
     this.address.isFill = false;
     self = this;
-    this.goodsList = JSON.parse(localStorage.getItem("_goodsDetails_")).data;  
+    if(JSON.parse(localStorage.getItem("_goodsDetails_")) && JSON.parse(localStorage.getItem("_goodsDetails_")).data){
+      self.goodsList = JSON.parse(localStorage.getItem("_goodsDetails_")).data;  
+    }
+    if(JSON.parse(localStorage.getItem("_invoice_")) && JSON.parse(localStorage.getItem("_invoice_")).data){
+      self.isInvoice = true;
+      self.invoice = JSON.parse(localStorage.getItem("_invoice_")).data;  
+    }
     self.getDefualtAddress();
    
     // console.log('================================');
@@ -159,13 +167,12 @@ export default {
   },
   methods: {
     placeOrder: function() {
-     
       if(!this.address.isFill) {
-        alert('请先选择收获地址！');
+        alert('请先选择收货地址！');
         return ;
       }
       if (!(this.address && this.address.data && this.address.data.address_id)) {
-        alert('请先选择收获地址！');
+        alert('请先选择收货地址！');
         return ;
       }
       var data = JSON.parse(localStorage.getItem("_goodsDetails_")).data;
@@ -181,15 +188,19 @@ export default {
       }
       var nums = (this.sumPriceText - this.delivery_fee).toFixed(2);
       Indicator.open();
+      let postData = {
+        goods_json: goods_jsons,
+        delivery_fee: this.delivery_fee,
+        total_amount: nums,
+        user_addr_id: _address.data.address_id,
+      }
+      if(this.isInvoice){
+        postData.invoice = this.invoice;
+      }
       request.actionUnasync({
           url: 'jd/addOrder',
           method: 'post',
-          data: {
-            goods_json: goods_jsons,
-            delivery_fee: this.delivery_fee,
-            total_amount: nums,
-            user_addr_id: _address.data.address_id
-          }
+          data: postData
       }).then( result => {
           Indicator.close();
           if(result.data.code == 1000) {
@@ -324,6 +335,19 @@ export default {
       JumpPage({
           href : `${request.getUrlbefore()}/addAddress.html`,
           // href : `${request.getUrlbefore()}/addressList.html`,
+          cache : true,
+          params : result
+      })
+    },
+    JumpPageInvoice() {
+      // window.location.href = "http://localhost:8080/invoice.html?token=25e629247c683ae1dff49192323333";
+      // return ;
+      var result = {
+        token : getSaveCacheToken(),
+      }
+ 
+      JumpPage({
+          href : `${request.getUrlbefore()}/invoice.html`,
           cache : true,
           params : result
       })
