@@ -10,8 +10,8 @@ instance.defaults.timeout = 0;
 instance.defaults.method = 'get'
 let token = { 'token': '' }
 
-const baseURL = 'http://findfocus.shangjinlantu.com/';
-// const baseURL = 'http://fxjd.jurenchina.net/findfocus/public/index.php/';
+// const baseURL = 'http://findfocus.shangjinlantu.com/';
+const baseURL = 'http://fxjd.jurenchina.net/findfocus/public/index.php/';
 export default {
   async actionUnasync (payload) {
     let result
@@ -55,8 +55,8 @@ export default {
     token = { 'token': newToken }
   },
   getUrlbefore () {
-    // return 'http://fxjd.jurenchina.net/dist';
-    return 'http://websource.shangjinlantu.com/jd/dist'
+    return 'http://fxjd.jurenchina.net/dist';
+    // return 'http://websource.shangjinlantu.com/jd/dist'
     // return 'http://192.168.2.141:8080/'
   }
 }
