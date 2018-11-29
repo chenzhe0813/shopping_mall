@@ -143,7 +143,8 @@ export default {
         },
         commentsValue: 0,
         addressList: ['广东', '深圳市', '罗湖区'],
-        sku: "885987",
+        sku: "209954",
+        // sku: "217570",
         contactTelnameData: {
             status : false,
             messageText : '需要咨询请联系客服，客服提供周到的咨询服务，希望你能支持和理解。'

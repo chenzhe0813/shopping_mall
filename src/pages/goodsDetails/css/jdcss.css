@@ -16,6 +16,35 @@
 .ssd-module-heading .ssd-widget-heading-ch{float: left;display: inline-block;margin-left: 15px; margin-right:6px; height: 100%;}
 .ssd-module-heading .ssd-widget-heading-en{float: left;display: inline-block;margin-left: 6px; margin-right:15px; height: 100%;}
 .ssd-module-wrap .ssd-widget-rectangle{box-sizing: border-box;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;}
+@media screen and (max-width: 320px){
+    .ssd-module-wrap{zoom: 0.5;}
+	.g-tab-content-box>img{zoom: 0.5;}
+}
+/*适配Android*/
+@media screen and (min-width: 321px) and (max-width: 361px){
+    .ssd-module-wrap{zoom: 0.5625;}
+	.g-tab-content-box>img{zoom: 0.5625;}
+}
+/*适配iphone6/7/8/x*/
+@media screen and (min-width: 361px) and (max-width: 375px){
+    .ssd-module-wrap{zoom: 0.5859;}
+	.g-tab-content-box>img{zoom: 0.5859;}
+}
+/*适配iphone6plus*/
+@media screen and (min-width: 376px) and (max-width: 415px){
+    .ssd-module-wrap{zoom: 0.6469;}
+	.g-tab-content-box>img{zoom: 0.6469;}
+}
+/*适配ipad*/
+@media screen and (min-width: 415px) and (max-width: 769px){
+    .ssd-module-wrap{zoom: 1.2;}
+	.g-tab-content-box>img{zoom: 1.2;}
+}
+/*适配ipad pro*/
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .ssd-module-wrap{zoom: 1.6;}
+	.g-tab-content-box>img{zoom: 1.6;}
+}
 
 /*C-E*/.ssd-module-wrap .M15294674768071{height:900px; width:750px; background-color:#d7d7d7; background-image:url(//img30.360buyimg.com/sku/jfs/t20275/142/1459826307/138194/1d0c14b0/5b29d249N46f7a577.jpg)}
 .ssd-module-wrap .M15294674768252{height:699px; width:750px; background-color:#f2f2f2; background-image:url(//img30.360buyimg.com/sku/jfs/t23107/346/237231860/48838/e3e28acc/5b29d249N182badd0.jpg)}
